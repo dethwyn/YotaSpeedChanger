@@ -1,0 +1,43 @@
+import config
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from time import sleep
+
+
+def get_chrome_options():
+    chrome_options = Options()
+    chrome_options.add_argument('--headless')
+    chrome_options.add_argument('--no-sandbox')
+    chrome_options.add_argument('--disable-dev-shm-usage')
+    chrome_options.add_argument('--disable-extensions')
+    chrome_options.add_argument('--disable-gpu')
+
+    return chrome_options
+
+driver = webdriver.Chrome(config.WEB_DRIVER_PATH, options=get_chrome_options())
+driver.set_window_position(20, 20)
+driver.set_window_size(1000, 500)
+driver.implicitly_wait(180)
+
+try:
+    driver.get('https://my.yota.ru/selfcare/login?goto=https%3A%2F%2Fmy.yota.ru%3A443%2Fdevices')
+    login = driver.find_element_by_id('authLoginText')
+    password = driver.find_element_by_id('authPasswordLogin')
+    button = driver.find_element_by_css_selector('.js-auth-login-button > button.b-button')
+    login.send_keys('norzes@mail.ru')
+    password.send_keys('12345678')
+    button.click()
+    decreaseButton = driver.find_element_by_css_selector('.decrease a')
+    for i in range(0, 11):
+        decreaseButton.click()
+        sleep(1)
+    offerButton = driver.find_element_by_css_selector('.main-offer a.btn')
+    offerButton.click()
+    sleep(20)
+except Exception as e: \
+
+        driver.close()
+        driver.quit()
+
+driver.close()
+driver.quit()
