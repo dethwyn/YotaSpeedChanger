@@ -1,5 +1,3 @@
-from selenium.webdriver.common.keys import Keys
-
 import config
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -17,7 +15,7 @@ def create_parser():
 
 def get_chrome_options():
     chrome_options = Options()
-    # chrome_options.add_argument('--headless')
+    chrome_options.add_argument('--headless')
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--disable-dev-shm-usage')
     chrome_options.add_argument('--disable-extensions')
@@ -56,7 +54,7 @@ if __name__ == '__main__':
                 decreaseButton.click()
             elif direction.speed == 'max':
                 increaseButton.click()
-            sleep(0.5)
+            sleep(0.3)
             print('=', end='')
         print(']')
         offerButton = driver.find_element_by_css_selector('.main-offer a.btn')
@@ -64,7 +62,7 @@ if __name__ == '__main__':
         print('Applying: [', end='')
         for i in range(0,10):
             print('=', end='')
-            sleep(0.5)
+            sleep(0.3)
         print(']')
         print('Done!')
     except Exception as e:
