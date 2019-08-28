@@ -35,7 +35,6 @@ if __name__ == '__main__':
     driver.set_window_position(20, 20)
     driver.set_window_size(1000, 500)
     driver.implicitly_wait(180)
-
     try:
         driver.get('https://my.yota.ru/selfcare/login?goto=https%3A%2F%2Fmy.yota.ru%3A443%2Fdevices')
         login = driver.find_element_by_id('authLoginText')
@@ -48,22 +47,17 @@ if __name__ == '__main__':
         decreaseButton = driver.find_element_by_css_selector('.decrease a')
         increaseButton = driver.find_element_by_css_selector('.increase a')
         print('Authorization was successful')
-        print('Progress: [', end='')
+        print('Process...')
         for i in range(0, 11):
             if direction.speed == 'min':
                 decreaseButton.click()
             elif direction.speed == 'max':
                 increaseButton.click()
             sleep(0.3)
-            print('=', end='')
-        print(']')
         offerButton = driver.find_element_by_css_selector('.main-offer a.btn')
         offerButton.click()
-        print('Applying: [', end='')
-        for i in range(0,10):
-            print('=', end='')
-            sleep(0.3)
-        print(']')
+        print('Applying...')
+        sleep(5)
         print('Done!')
     except Exception as e:
         driver.close()
