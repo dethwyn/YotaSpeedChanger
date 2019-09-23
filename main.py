@@ -48,7 +48,7 @@ if __name__ == '__main__':
         increaseButton = driver.find_element_by_css_selector('.increase a')
         print('Authorization was successful')
         print('Process...')
-        for i in range(0, 11):
+        for i in range(0, 10):
             if direction.speed == 'min':
                 decreaseButton.click()
             elif direction.speed == 'max':
